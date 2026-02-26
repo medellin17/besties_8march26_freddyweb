@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export function useTypewriter(text: string, speed: number = 30) {
     const [displayedText, setDisplayedText] = useState('');
     const [isFinished, setIsFinished] = useState(false);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
         setDisplayedText('');
@@ -17,19 +18,22 @@ export function useTypewriter(text: string, speed: number = 30) {
         }
 
         let i = 0;
-        const interval = setInterval(() => {
+        intervalRef.current = setInterval(() => {
             i++;
             setDisplayedText(text.slice(0, i));
             if (i >= text.length) {
-                clearInterval(interval);
+                if (intervalRef.current) clearInterval(intervalRef.current);
                 setIsFinished(true);
             }
         }, speed);
 
-        return () => clearInterval(interval);
+        return () => {
+            if (intervalRef.current) clearInterval(intervalRef.current);
+        };
     }, [text, speed]);
 
     const skip = () => {
+        if (intervalRef.current) clearInterval(intervalRef.current);
         setDisplayedText(text);
         setIsFinished(true);
     };

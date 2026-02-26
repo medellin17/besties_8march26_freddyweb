@@ -61,17 +61,18 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
         setDialogIndex(0);
     };
 
-    // Maps scene.background to a tailwind class or inline style
-    const getBgClass = () => {
+    // Maps scene.background to an image URL
+    const getBgUrl = () => {
         switch (scene.background) {
-            case 'office': return 'bg-[url("/assets/bg/office.png")]';
-            case 'hallway': return 'bg-[url("/assets/bg/hallway.png")]';
-            case 'stage': return 'bg-[url("/assets/bg/stage.png")]'; // TODO: generate
-            case 'party_room': return 'bg-[url("/assets/bg/party_room.png")]'; // TODO: generate
-            case 'title': return 'bg-black'; // Fallback for title
-            default: return 'bg-gray-900 border-2 border-red-500';
+            case 'office': return '/assets/bg/office.png';
+            case 'hallway': return '/assets/bg/hallway.png';
+            case 'stage': return '/assets/bg/stage.png';
+            case 'party_room': return '/assets/bg/party_room.png';
+            default: return null;
         }
     };
+
+    const bgUrl = getBgUrl();
 
     return (
         <div className="relative w-full h-[100dvh] overflow-hidden crt bg-black selection:bg-red-900/50 flex flex-col justify-end">
@@ -82,7 +83,8 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className={`absolute inset-0 ${getBgClass()} bg-cover bg-center bg-no-repeat`}
+                className={`absolute inset-0 bg-cover bg-center bg-no-repeat ${bgUrl ? '' : 'bg-black'}`}
+                style={bgUrl ? { backgroundImage: `url("${bgUrl}")` } : undefined}
             >
                 {/* Dynamic filters based on effect */}
                 {scene.effect === 'flash' && <div className="absolute inset-0 bg-white z-10 animate-ping opacity-50" />}

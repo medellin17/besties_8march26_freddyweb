@@ -57,13 +57,23 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
             transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-            className={`absolute ${getPositionClass()} z-20 flex flex-col items-center`}
+            className={`absolute ${getPositionClass()} z-20 flex flex-col items-center pointer-events-none`}
         >
-            {/* Fallback Sprite (100x200 placeholder) */}
-            <div className={`w-[150px] h-[250px] md:w-[200px] md:h-[350px] rounded-t-full border-4 ${getFallbackColor()} shadow-[0_0_15px_rgba(0,0,0,0.5)] flex items-center justify-center`}>
-                <span className="font-press-start text-xs text-white opacity-50 uppercase rotate-[-90deg]">
-                    {character.name}
-                </span>
+            <div className="w-[200px] h-[350px] md:w-[300px] md:h-[500px] flex items-end justify-center overflow-hidden mix-blend-screen drop-shadow-2xl">
+                <img
+                    src={`/assets/sprites/${character.name}.png`}
+                    alt={character.name}
+                    className="w-full h-full object-contain pointer-events-none"
+                    onError={(e) => {
+                        console.error('Sprite load error for', character.name);
+                        (e.target as HTMLElement).style.display = 'none';
+                        const parent = (e.target as HTMLElement).parentElement;
+                        if (parent) {
+                            parent.innerHTML = `<div class="w-full h-full bg-red-900 border-4 border-red-500 rounded-t-full flex items-center justify-center"><span class="font-press-start text-xs text-white uppercase">${character.name}</span></div>`;
+                            parent.classList.remove('mix-blend-screen')
+                        }
+                    }}
+                />
             </div>
 
             {/* Expression badge */}
