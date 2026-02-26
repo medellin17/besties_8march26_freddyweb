@@ -25,12 +25,12 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
 
     const getPositionClass = () => {
         switch (character.position) {
-            case 'left': return 'left-[5%] md:left-[10%] bottom-[10%]';
-            case 'center_left': return 'left-[25%] md:left-[30%] bottom-[10%]';
-            case 'center': return 'left-1/2 -translate-x-1/2 bottom-[10%]';
-            case 'center_right': return 'right-[25%] md:right-[30%] bottom-[10%]';
-            case 'right': return 'right-[5%] md:right-[10%] bottom-[10%]';
-            default: return 'left-1/2 -translate-x-1/2 bottom-[10%]';
+            case 'left': return 'left-[5%] md:left-[10%] bottom-[15%] md:bottom-[20%]';
+            case 'center_left': return 'left-[25%] md:left-[30%] bottom-[15%] md:bottom-[20%]';
+            case 'center': return 'left-1/2 -translate-x-1/2 bottom-[15%] md:bottom-[20%]';
+            case 'center_right': return 'right-[25%] md:right-[30%] bottom-[15%] md:bottom-[20%]';
+            case 'right': return 'right-[5%] md:right-[10%] bottom-[15%] md:bottom-[20%]';
+            default: return 'left-1/2 -translate-x-1/2 bottom-[15%] md:bottom-[20%]';
         }
     };
 
@@ -59,7 +59,7 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
             transition={{ type: 'spring', stiffness: 260, damping: 20 }}
             className={`absolute ${getPositionClass()} z-20 flex flex-col items-center pointer-events-none`}
         >
-            <div className="w-[200px] h-[350px] md:w-[300px] md:h-[500px] flex items-end justify-center overflow-hidden mix-blend-screen drop-shadow-2xl">
+            <div className="w-[350px] h-[550px] md:w-[500px] md:h-[750px] flex items-end justify-center overflow-hidden drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
                 <img
                     src={`/assets/sprites/${character.name}.png`}
                     alt={character.name}
