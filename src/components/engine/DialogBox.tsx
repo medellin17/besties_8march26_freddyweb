@@ -37,7 +37,7 @@ export const DialogBox: React.FC<DialogBoxProps> = ({ speaker, text, memeImage, 
                         initial={{ opacity: 0, y: 20, scale: 0.8 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.8 }}
-                        className="absolute -top-[220px] left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:-translate-x-0 w-[200px] h-[200px] rounded-lg border-2 border-white overflow-hidden bg-black shadow-lg z-50 pointer-events-none"
+                        className="absolute -top-[220px] right-0 md:right-4 w-[200px] h-[200px] rounded-lg border-2 border-white overflow-hidden bg-black shadow-lg z-[100] pointer-events-none"
                     >
                         <img src={`/assets/memes/${memeImage}`} alt="meme" className="w-full h-full object-cover" />
                     </motion.div>

@@ -25,31 +25,28 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
 
     const getPositionClass = () => {
         switch (character.position) {
-            case 'left': return 'left-[5%] md:left-[10%] bottom-[15%] md:bottom-[20%]';
-            case 'center_left': return 'left-[25%] md:left-[30%] bottom-[15%] md:bottom-[20%]';
-            case 'center': return 'left-1/2 -translate-x-1/2 bottom-[15%] md:bottom-[20%]';
-            case 'center_right': return 'right-[25%] md:right-[30%] bottom-[15%] md:bottom-[20%]';
-            case 'right': return 'right-[5%] md:right-[10%] bottom-[15%] md:bottom-[20%]';
-            default: return 'left-1/2 -translate-x-1/2 bottom-[15%] md:bottom-[20%]';
+            case 'left': return 'left-[-10%] md:left-[-5%] bottom-[15%] md:bottom-[20%] z-20';
+            case 'center_left': return 'left-[10%] md:left-[20%] bottom-[18%] md:bottom-[22%] z-25';
+            case 'center': return 'left-1/2 -translate-x-1/2 bottom-[20%] md:bottom-[25%] z-30';
+            case 'center_right': return 'right-[10%] md:right-[20%] bottom-[18%] md:bottom-[22%] z-25';
+            case 'right': return 'right-[-10%] md:right-[-5%] bottom-[15%] md:bottom-[20%] z-20';
+            default: return 'left-1/2 -translate-x-1/2 bottom-[20%] md:bottom-[25%] z-30';
         }
     };
 
-    // We will just show an img tag or div with the full sprite-sheet mapped.
-    // Wait, without exact coordinates, let's use a nice CSS clip-path or background-position.
-    // Actually, for the sake of the VN MVP, we can render the character name if coordinates are wrong, 
-    // but let's assume `backgroundPosition` will be passed or calculated.
-    // For now, let's just make it a colored block with their name if the sprite fails, 
-    // or use the next/image with object-position if we use img tag.
-
-    // As a fallback visual while positioning is unknown:
-    const getFallbackColor = () => {
-        switch (character.name) {
-            case 'freddy': return 'bg-amber-900 border-amber-700';
-            case 'bonnie': return 'bg-purple-700 border-purple-500';
-            case 'chika': return 'bg-yellow-400 border-yellow-300';
-            case 'foxy': return 'bg-red-700 border-red-500';
+    const getSizeClass = () => {
+        switch (character.position) {
+            case 'left':
+            case 'right':
+                return 'h-[60vh] md:h-[75vh]';
+            case 'center_left':
+            case 'center_right':
+                return 'h-[65vh] md:h-[80vh]';
+            case 'center':
+            default:
+                return 'h-[70vh] md:h-[85vh]';
         }
-    }
+    };
 
     return (
         <motion.div
@@ -57,13 +54,13 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
             transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-            className={`absolute ${getPositionClass()} z-20 flex flex-col items-center pointer-events-none`}
+            className={`absolute ${getPositionClass()} flex flex-col items-center pointer-events-none`}
         >
-            <div className="w-[350px] h-[550px] md:w-[500px] md:h-[750px] flex items-end justify-center overflow-hidden drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
+            <div className={`${getSizeClass()} w-auto flex items-end justify-center overflow-hidden drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]`}>
                 <img
                     src={`/assets/sprites/${character.name}.png`}
                     alt={character.name}
-                    className="w-full h-full object-contain pointer-events-none"
+                    className="h-full w-auto object-contain pointer-events-none"
                     onError={(e) => {
                         console.error('Sprite load error for', character.name);
                         (e.target as HTMLElement).style.display = 'none';
@@ -74,11 +71,6 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
                         }
                     }}
                 />
-            </div>
-
-            {/* Expression badge */}
-            <div className="mt-2 bg-black/80 px-2 py-1 rounded text-[10px] text-white font-mono border border-gray-600">
-                {character.expression}
             </div>
         </motion.div>
     );
