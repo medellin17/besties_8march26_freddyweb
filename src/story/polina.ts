@@ -101,8 +101,8 @@ export const polinaStory: Record<string, Scene> = {
             { speaker: 'Бонни', text: 'Ну ладно. В Brawl Stars хоть, пока тихо?' },
         ],
         choices: [
-            { text: '🎮 "Давай одну катку"', nextId: 'brawl_break' },
-            { text: '📷 "Лучше проверим камеры"', nextId: 'check_cameras' },
+            { text: "Давай одну катку", nextId: 'brawl_break' },
+            { text: "Лучше проверим камеры", nextId: 'check_cameras' },
         ],
     },
 
@@ -155,8 +155,8 @@ export const polinaStory: Record<string, Scene> = {
         effect: 'shake',
         sound: 'running-fast3',
         choices: [
-            { text: '🚪 Закрыть дверь!', nextId: 'door_closed' },
-            { text: '👁️ Посмотреть в коридор', nextId: 'door_open' },
+            { text: 'Закрыть дверь!', nextId: 'door_closed' },
+            { text: 'Посмотреть в коридор', nextId: 'door_open' },
         ],
     },
 

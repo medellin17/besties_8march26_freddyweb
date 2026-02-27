@@ -159,8 +159,8 @@ export const mashaStory: Record<string, Scene> = {
         effect: 'shake',
         sound: 'running-fast3',
         choices: [
-            { text: '🚪 Закрыть правую дверь!', nextId: 'door_closed' },
-            { text: '🙈 "А вдруг не Фокси?"', nextId: 'door_open' },
+            { text: 'Закрыть правую дверь!', nextId: 'door_closed' },
+            { text: '"А вдруг не Фокси?"', nextId: 'door_open' },
         ],
     },
 

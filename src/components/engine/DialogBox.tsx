@@ -3,6 +3,16 @@
 import React, { useRef, useEffect } from 'react';
 import { useTypewriter } from '@/hooks/useTypewriter';
 import { motion, AnimatePresence } from 'framer-motion';
+import {
+    ChevronRight,
+    Gamepad2,
+    Camera,
+    DoorClosed,
+    Search,
+    MessageSquare,
+    Coffee,
+    ShieldAlert
+} from 'lucide-react';
 
 interface DialogBoxProps {
     speaker: string | null;
@@ -13,9 +23,20 @@ interface DialogBoxProps {
     onChoiceResult?: (nextId: string) => void;
 }
 
+const getChoiceIcon = (text: string) => {
+    const t = text.toLowerCase();
+    if (t.includes('brawl') || t.includes('катку')) return <Gamepad2 className="w-4 h-4" />;
+    if (t.includes('камер') || t.includes('посмотреть')) return <Camera className="w-4 h-4" />;
+    if (t.includes('дверь') || t.includes('закрыть')) return <DoorClosed className="w-4 h-4" />;
+    if (t.includes('искать') || t.includes('посмотреть')) return <Search className="w-4 h-4" />;
+    if (t.includes('уйти') || t.includes('попросить')) return <MessageSquare className="w-4 h-4" />;
+    if (t.includes('чаю') || t.includes('чай')) return <Coffee className="w-4 h-4" />;
+    if (t.includes('фокси') || t.includes('отпугнуть')) return <ShieldAlert className="w-4 h-4" />;
+    return <ChevronRight className="w-4 h-4" />;
+};
+
 export const DialogBox: React.FC<DialogBoxProps> = ({ speaker, text, memeImage, onNext, choices, onChoiceResult }) => {
     const { displayedText, isFinished, skip } = useTypewriter(text, 35);
-    // Optional audio ref for typing sound
 
     const handleClick = () => {
         if (isFinished && choices && choices.length > 0) return; // Wait for choice
@@ -27,54 +48,84 @@ export const DialogBox: React.FC<DialogBoxProps> = ({ speaker, text, memeImage, 
     };
 
     return (
-        <div
-            className="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-1/2 md:-translate-x-1/2 md:w-[600px] z-50 flex flex-col gap-2"
-        >
+        <div className="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-1/2 md:-translate-x-1/2 md:w-[650px] z-50 flex flex-col gap-3">
             {/* Meme Popup */}
             <AnimatePresence>
                 {memeImage && (
                     <motion.div
-                        initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        className="absolute -top-[220px] right-0 md:right-4 w-[200px] h-[200px] rounded-lg border-2 border-white overflow-hidden bg-black shadow-lg z-[100] pointer-events-none"
+                        initial={{ opacity: 0, y: 20, scale: 0.8, rotate: -5 }}
+                        animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+                        exit={{ opacity: 0, scale: 0.8, rotate: 5 }}
+                        className="absolute -top-[230px] right-2 md:right-4 w-[210px] h-[210px] rounded-lg border-2 border-white/50 overflow-hidden bg-black shadow-2xl z-[100] pointer-events-none"
                     >
                         <img src={`/assets/memes/${memeImage}`} alt="meme" className="w-full h-full object-cover" />
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            <div
-                className="bg-black/80 border-2 border-white rounded-lg p-4 cursor-pointer min-h-[120px] flex flex-col backdrop-blur-sm"
+            {/* Choices Layer */}
+            <AnimatePresence>
+                {isFinished && choices && choices.length > 0 && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex flex-col gap-2 mb-2"
+                    >
+                        {choices.map((choice, i) => (
+                            <motion.button
+                                key={i}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: i * 0.15 }}
+                                whileHover={{ scale: 1.02, x: 5 }}
+                                whileTap={{ scale: 0.98 }}
+                                onClick={() => onChoiceResult?.(choice.nextId)}
+                                className="group relative flex items-center gap-3 bg-black/90 border border-white/20 hover:border-red-500/50 hover:bg-red-950/30 text-white font-sans text-sm md:text-base p-4 rounded-lg shadow-lg overflow-hidden transition-all duration-300"
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/5 to-red-500/0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="z-10 text-red-500 group-hover:text-red-400 group-hover:scale-110 transition-transform">
+                                    {getChoiceIcon(choice.text)}
+                                </div>
+                                <span className="z-10 font-medium tracking-wide">{choice.text}</span>
+                                <ChevronRight className="ml-auto w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                            </motion.button>
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Main Dialog Box */}
+            <motion.div
+                initial={false}
+                animate={{ height: speaker ? 'auto' : 'auto' }}
+                className="relative bg-black/85 border-2 border-white/20 rounded-xl p-5 cursor-pointer min-h-[130px] flex flex-col backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.5)] ring-1 ring-white/10"
                 onClick={handleClick}
             >
+                {/* Visual Accent */}
+                <div className="absolute top-0 left-0 w-1 h-full bg-red-600/50 rounded-l-xl" />
+
                 {speaker && (
-                    <div className="font-press-start text-[10px] md:text-xs text-yellow-300 mb-2 uppercase tracking-tight">
-                        [{speaker}]
+                    <div className="font-press-start text-[9px] md:text-[11px] text-red-500 mb-3 uppercase tracking-widest drop-shadow-[0_0_5px_rgba(239,68,68,0.5)]">
+                        {speaker}
                     </div>
                 )}
-                <div className="font-sans text-sm md:text-base leading-relaxed text-white">
+
+                <div className="font-sans text-sm md:text-[17px] leading-relaxed text-gray-100">
                     {displayedText}
-                    {!isFinished && <span className="animate-pulse">_</span>}
+                    {!isFinished && <span className="inline-block w-2 h-4 bg-red-500 ml-1 animate-pulse" />}
+
                     {isFinished && (!choices || choices.length === 0) && (
-                        <span className="block mt-2 text-gray-500 text-xs animate-pulse">▼ Нажмите, чтобы продолжить</span>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="mt-4 flex items-center gap-2 text-gray-500 text-[10px] md:text-xs font-press-start tracking-tighter"
+                        >
+                            <ChevronRight className="w-3 h-3 animate-bounce-x" />
+                            <span>Нажмите, чтобы продолжить</span>
+                        </motion.div>
                     )}
                 </div>
-            </div>
-
-            {isFinished && choices && choices.length > 0 && (
-                <div className="flex flex-col gap-2 mt-2">
-                    {choices.map((choice, i) => (
-                        <button
-                            key={i}
-                            onClick={() => onChoiceResult?.(choice.nextId)}
-                            className="bg-black/90 border border-red-500 hover:bg-red-900/50 text-white font-sans text-sm p-3 rounded text-left transition-colors duration-200"
-                        >
-                            {choice.text}
-                        </button>
-                    ))}
-                </div>
-            )}
+            </motion.div>
         </div>
     );
 }
