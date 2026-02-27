@@ -33,7 +33,7 @@ export const polinaStory: Record<string, Scene> = {
             { speaker: null, text: 'Офис небольшой. Тускло горит лампа. На столе три монитора, вентилятор и записка: "НЕ ОТКРЫВАЙ ДВЕРИ. СЕРЬЁЗНО."' },
             { speaker: null, text: 'Телефон на столе начинает звонить.' },
         ],
-        sound: 'phone_ring',
+        sound: 'ring',
         nextId: 'phone_call',
     },
 
@@ -42,18 +42,18 @@ export const polinaStory: Record<string, Scene> = {
         background: 'office',
         characters: [],
         dialog: [
-            { speaker: 'Глеб (по телефону)', text: '*кряхтит* Алло. Привет. Ты добралась.' },
-            { speaker: 'Глеб (по телефону)', text: 'Я предыдущий охранник. Оставляю тебе полезные советы.' },
-            { speaker: 'Глеб (по телефону)', text: 'Совет первый: вентилятор не выключай. Он не охлаждает, просто... так надо.' },
-            { speaker: 'Глеб (по телефону)', text: 'Совет второй: аниматроники ночью двигаются. Это нормально. Главное — не смотри им в глаза.' },
-            { speaker: 'Глеб (по телефону)', text: 'Совет третий: если увидишь фиолетового кролика с гитарой — это Бонни. Он нормик. Почти.' },
-            { speaker: 'Глеб (по телефону)', text: 'Тишина в группе сегодня потому что у меня шесть уроков было. Вот так.', memeImage: 'photo_2026-02-18_23-28-43.jpg' },
-            { speaker: 'Глеб (по телефону)', text: 'Ладно, удачи. Я уверен, всё будет окей.' },
+            { speaker: 'Phone Guy', text: '*кряхтит* Алло. Привет. Ты добралась.' },
+            { speaker: 'Phone Guy', text: 'Я предыдущий охранник. Оставляю тебе полезные советы.' },
+            { speaker: 'Phone Guy', text: 'Совет первый: вентилятор не выключай. Он не охлаждает, просто... так надо.' },
+            { speaker: 'Phone Guy', text: 'Совет второй: аниматроники ночью двигаются. Это нормально. Главное — не смотри им в глаза.' },
+            { speaker: 'Phone Guy', text: 'Совет третий: если увидишь фиолетового кролика с гитарой — это Бонни. Он нормик. Почти.' },
+            { speaker: 'Phone Guy', text: 'Тишина в группе сегодня потому что у меня шесть уроков было. Вот так.', memeImage: 'photo_2026-02-18_23-28-43.jpg' },
+            { speaker: 'Phone Guy', text: 'Ладно, удачи. Я уверен, всё будет окей.' },
             { speaker: null, text: 'Внутренний детектор показывает...', memeImage: 'photo_2026-02-18_18-20-30.jpg' },
-            { speaker: 'Глеб (по телефону)', text: 'Хотя...' },
-            { speaker: 'Глеб (по телефону)', text: '*гудки*' },
+            { speaker: 'Phone Guy', text: 'Хотя...' },
+            { speaker: 'Phone Guy', text: '*гудки*' },
         ],
-        sound: 'phone_ring',
+        sound: 'ring',
         nextId: 'first_look',
     },
 
@@ -154,6 +154,7 @@ export const polinaStory: Record<string, Scene> = {
             { speaker: 'Бонни', text: 'ЭТО ФОКСИ.' },
         ],
         effect: 'shake',
+        sound: 'running-fast3',
         choices: [
             { text: '🚪 Закрыть дверь!', nextId: 'door_closed' },
             { text: '👁️ Посмотреть в коридор', nextId: 'door_open' },
@@ -163,6 +164,7 @@ export const polinaStory: Record<string, Scene> = {
     door_closed: {
         id: 'door_closed',
         background: 'office',
+        sound: 'pound-2',
         characters: [{ name: 'bonnie', expression: 'relieved', position: 'right' }],
         dialog: [
             { speaker: null, text: 'Ты со всей силы жмёшь на кнопку. Металлическая дверь с лязгом захлопывается.' },
@@ -185,7 +187,6 @@ export const polinaStory: Record<string, Scene> = {
             { speaker: null, text: 'Ты осторожно выглядываешь в коридор.' },
         ],
         effect: 'flash',
-        sound: 'jumpscare',
         nextId: 'door_open_aftermath',
     },
 
@@ -197,7 +198,7 @@ export const polinaStory: Record<string, Scene> = {
             { name: 'bonnie', expression: 'facepalm', position: 'right' },
         ],
         dialog: [
-            { speaker: 'Фокси', text: 'ААААААААА—' },
+            { speaker: 'Фокси', text: 'ААААААААА—', sound: 'scream55' },
             { speaker: 'Фокси', text: '...привет.' },
             { speaker: null, text: 'Фокси стоит в твоём офисе. На нём повязка. В руке крюк. И он выглядит виноватым.' },
             { speaker: 'Фокси', text: 'Ахуенное качество у этой двери если что. Я потряс — она и открылась.', memeImage: 'photo_2026-02-18_23-21-15.jpg' },
@@ -326,6 +327,7 @@ export const polinaStory: Record<string, Scene> = {
     ending_heartwarming: {
         id: 'ending_heartwarming',
         background: 'stage',
+        sound: 'chimes-2',
         characters: [
             { name: 'bonnie', expression: 'happy', position: 'stage_left' },
             { name: 'chika', expression: 'moved', position: 'stage_right' },
@@ -347,6 +349,7 @@ export const polinaStory: Record<string, Scene> = {
     ending_party: {
         id: 'ending_party',
         background: 'party_room',
+        sound: 'chimes-2',
         characters: [
             { name: 'freddy', expression: 'happy', position: 'party_1' },
             { name: 'bonnie', expression: 'excited', position: 'party_2' },

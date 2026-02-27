@@ -18,27 +18,40 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
     const [currentSceneId, setCurrentSceneId] = useState<string>(startSceneId);
     const [dialogIndex, setDialogIndex] = useState(0);
 
-    const { playSound, startAmbient } = useAudio();
+    const { playSound, startAmbient, stopAmbient } = useAudio();
 
     const scene = storyData[currentSceneId];
-
-    // Trigger entry effects
-    useEffect(() => {
-        if (!scene) return;
-
-        if (currentSceneId === startSceneId) {
-            startAmbient();
-        }
-
-        if (scene.sound) {
-            playSound(scene.sound);
-        }
-    }, [currentSceneId, scene]);
 
     if (!scene) return <div className="text-white h-screen flex items-center justify-center" style={{ fontFamily: '"Press Start 2P"' }}>Loading...</div>;
 
     const currentDialog = scene.dialog[dialogIndex];
     const isLastDialog = dialogIndex === scene.dialog.length - 1;
+
+    // Map current dialog or scene sound
+    // Only play scene.sound on the first dialog line (index 0) to prevent looping on every click
+    const currentSound = currentDialog?.sound || (dialogIndex === 0 ? scene?.sound : null);
+
+    useEffect(() => {
+        if (!scene) return;
+
+        // Start ambient on first scene load
+        if (currentSceneId === startSceneId && dialogIndex === 0) {
+            startAmbient();
+        }
+
+        // Manage ambient audio based on background
+        // User requested no ambient sound on the 'stage'
+        if (scene.background === 'stage') {
+            stopAmbient();
+        } else if (currentSceneId !== startSceneId) {
+            startAmbient(); // Ensure it resumes if we left the stage
+        }
+
+        // Play sound if attached to this specific dialog line or scene entry
+        if (currentSound) {
+            playSound(currentSound);
+        }
+    }, [currentSceneId, dialogIndex, scene, currentSound]);
 
     const handleNextDialog = () => {
         if (isLastDialog) {

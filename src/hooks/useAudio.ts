@@ -6,9 +6,6 @@ export function useAudio() {
     const ambientRef = useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
-        // If we have actual files, we'd initialize new Audio('/assets/audio/ambient.mp3')
-        // For now, we stub this out to prevent React 19 hydration errors or DOM exceptions
-
         return () => {
             if (ambientRef.current) {
                 ambientRef.current.pause();
@@ -16,19 +13,57 @@ export function useAudio() {
         };
     }, []);
 
-    const playSound = (name: string) => {
-        // const audio = new Audio(`/assets/audio/${name}.mp3`);
-        // audio.play().catch(e => console.log('Audio play failed:', e));
-        console.log(`[Audio played]: ${name}`);
+    const playSound = (name: string, loop: boolean = false) => {
+        try {
+            const audio = new Audio(`/assets/audio/${name}.mp3`);
+            audio.loop = loop;
+            if (name === 'buzz-fan-florescent2' || name === 'ambience-2') {
+                audio.volume = 0.2; // Lowered ambient
+            } else if (name === 'ring') {
+                audio.volume = 0.4; // Lowered ring
+            } else if (name === 'pound-2') {
+                audio.volume = 0.5; // Lowered door sound
+            } else if (name === 'scream55') {
+                audio.volume = 0.4; // Controlled jumpscare volume
+            } else {
+                audio.volume = 0.5; // Lowered default (chimes, running)
+            }
+
+            const playPromise = audio.play();
+
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log(`[Audio] Autoplay prevented for ${name}:`, error);
+                });
+            }
+            return audio;
+        } catch (e) {
+            console.error('[Audio] Error playing sound:', e);
+            return null;
+        }
     };
 
     const startAmbient = () => {
-        // ambientRef.current = new Audio('/assets/audio/ambient.mp3');
-        // ambientRef.current.loop = true;
-        // ambientRef.current.volume = 0.3;
-        // ambientRef.current.play().catch(e => console.log('Ambient audio failed:', e));
-        console.log('[Ambient audio started]');
+        if (!ambientRef.current) {
+            ambientRef.current = new Audio('/assets/audio/buzz-fan-florescent2.mp3');
+            ambientRef.current.loop = true;
+            ambientRef.current.volume = 0.3;
+        }
+
+        const playPromise = ambientRef.current.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('[Audio] Ambient autoplay prevented:', error);
+            });
+        }
     };
 
-    return { playSound, startAmbient };
+    const stopAmbient = () => {
+        if (ambientRef.current) {
+            ambientRef.current.pause();
+            ambientRef.current.currentTime = 0;
+        }
+    };
+
+    return { playSound, startAmbient, stopAmbient };
 }

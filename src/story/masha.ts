@@ -33,7 +33,7 @@ export const mashaStory: Record<string, Scene> = {
             { speaker: null, text: 'Монитор. Вентилятор. Стул. Записка на двери: "Если придёт Фокси — дверь закрывай СРАЗУ".' },
             { speaker: null, text: 'Телефон звонит.' },
         ],
-        sound: 'phone_ring',
+        sound: 'ring',
         nextId: 'phone_call',
     },
 
@@ -42,18 +42,18 @@ export const mashaStory: Record<string, Scene> = {
         background: 'office',
         characters: [],
         dialog: [
-            { speaker: 'Глеб (по телефону)', text: 'Алло. Это я. Предыдущий охранник.' },
-            { speaker: 'Глеб (по телефону)', text: 'Хочу тебя предупредить о нескольких вещах.' },
-            { speaker: 'Глеб (по телефону)', text: 'Первое: аниматроники двигаются. Это задумано. Не паникуй.' },
-            { speaker: 'Глеб (по телефону)', text: 'Второе: Фредди — медведь. Он кажется серьёзным, но на самом деле он просто стесняется.' },
-            { speaker: 'Глеб (по телефону)', text: 'Третье: сегодня у нас в беседе была тишина, потому что у меня было шесть уроков.', memeImage: 'photo_2026-02-18_23-28-43.jpg' },
-            { speaker: 'Глеб (по телефону)', text: 'Блин, это не относится к делу. Ладно.' },
-            { speaker: 'Глеб (по телефону)', text: 'Ну, удачи тебе, Marry. Ты справишься.' },
+            { speaker: 'Phone Guy', text: 'Алло. Это я. Предыдущий охранник.' },
+            { speaker: 'Phone Guy', text: 'Хочу тебя предупредить о нескольких вещах.' },
+            { speaker: 'Phone Guy', text: 'Первое: аниматроники двигаются. Это задумано. Не паникуй.' },
+            { speaker: 'Phone Guy', text: 'Второе: Фредди — медведь. Он кажется серьёзным, но на самом деле он просто стесняется.' },
+            { speaker: 'Phone Guy', text: 'Третье: сегодня у нас в беседе была тишина, потому что у меня было шесть уроков.', memeImage: 'photo_2026-02-18_23-28-43.jpg' },
+            { speaker: 'Phone Guy', text: 'Блин, это не относится к делу. Ладно.' },
+            { speaker: 'Phone Guy', text: 'Ну, удачи тебе, Marry. Ты справишься.' },
             { speaker: null, text: 'Внутренний детектор показывает...', memeImage: 'photo_2026-02-18_18-20-30.jpg' },
-            { speaker: 'Глеб (по телефону)', text: '...наверное.' },
-            { speaker: 'Глеб (по телефону)', text: '*гудки*' },
+            { speaker: 'Phone Guy', text: '...наверное.' },
+            { speaker: 'Phone Guy', text: '*гудки*' },
         ],
-        sound: 'phone_ring',
+        sound: 'ring',
         nextId: 'first_look',
     },
 
@@ -158,6 +158,7 @@ export const mashaStory: Record<string, Scene> = {
             { speaker: 'Фредди', text: 'Сейчас.' },
         ],
         effect: 'shake',
+        sound: 'running-fast3',
         choices: [
             { text: '🚪 Закрыть правую дверь!', nextId: 'door_closed' },
             { text: '🙈 "А вдруг не Фокси?"', nextId: 'door_open' },
@@ -167,6 +168,7 @@ export const mashaStory: Record<string, Scene> = {
     door_closed: {
         id: 'door_closed',
         background: 'office',
+        sound: 'pound-2',
         characters: [{ name: 'freddy', expression: 'relieved', position: 'right' }],
         dialog: [
             { speaker: null, text: 'Ты нажимаешь кнопку. Дверь с грохотом захлопывается.' },
@@ -189,7 +191,6 @@ export const mashaStory: Record<string, Scene> = {
             { speaker: null, text: 'Ты ждёшь. Ждёшь.' },
         ],
         effect: 'flash',
-        sound: 'jumpscare',
         nextId: 'door_open_aftermath',
     },
 
@@ -201,7 +202,7 @@ export const mashaStory: Record<string, Scene> = {
             { name: 'foxy', expression: 'sheepish', position: 'left' },
         ],
         dialog: [
-            { speaker: 'Фокси', text: 'АААААААААА—' },
+            { speaker: 'Фокси', text: 'АААААААААА—', sound: 'scream55' },
             { speaker: null, text: 'Фокси буквально ввалился в офис. Стоит. Смотрит на тебя.' },
             { speaker: 'Фокси', text: '...Ты не убежала.' },
             { speaker: 'Фокси', text: 'Обычно убегают.' },
@@ -223,7 +224,7 @@ export const mashaStory: Record<string, Scene> = {
             { speaker: null, text: 'Ты слышишь, как со стороны кухни доносится звон посуды и чьё-то бормотание.' },
         ],
         choices: [
-            { text: '🎂 Пойти на кухню к Чике', nextId: 'kitchen_scene' },
+            { text: '🎂 Пойти на кухню', nextId: 'kitchen_scene' },
             { text: '📷 Сначала ещё раз проверить камеры', nextId: 'cameras_check' },
         ],
     },
@@ -292,6 +293,7 @@ export const mashaStory: Record<string, Scene> = {
     ending_chaos: {
         id: 'ending_chaos',
         background: 'party_room',
+        sound: 'chimes-2',
         characters: [
             { name: 'freddy', expression: 'happy', position: 'left' },
             { name: 'chika', expression: 'happy', position: 'center' },
@@ -312,6 +314,7 @@ export const mashaStory: Record<string, Scene> = {
     ending_heartwarming: {
         id: 'ending_heartwarming',
         background: 'party_room',
+        sound: 'chimes-2',
         characters: [
             { name: 'freddy', expression: 'moved', position: 'left' },
             { name: 'chika', expression: 'moved', position: 'center' },
@@ -331,6 +334,7 @@ export const mashaStory: Record<string, Scene> = {
     ending_party: {
         id: 'ending_party',
         background: 'party_room',
+        sound: 'chimes-2',
         characters: [
             { name: 'freddy', expression: 'happy', position: 'party_1' },
             { name: 'bonnie', expression: 'happy', position: 'party_2' },
