@@ -57,6 +57,7 @@ export interface DialogLine {
     speaker: string | null; // null = narrator/description
     text: string;
     memeImage?: string;     // filename from /public/assets/memes/
+    sound?: string;
 }
 
 export interface Choice {
@@ -72,6 +73,6 @@ export interface Scene {
     choices?: Choice[];    // if defined — show choice buttons
     nextId?: string;       // if no choices — auto-advance
     effect?: ScreenEffect;
-    sound?: SoundCue;
+    sound?: string;
     isEnding?: boolean;
 }
