@@ -245,13 +245,13 @@ export const polinaStory: Record<string, Scene> = {
         id: 'stage_scene',
         background: 'stage',
         characters: [
-            { name: 'freddy', expression: 'neutral', position: 'stage_left' },
+            { name: 'bonnie', expression: 'happy', position: 'stage_left' },
             { name: 'chika', expression: 'excited', position: 'stage_right' },
         ],
         dialog: [
             { speaker: null, text: 'Сцена тёмная, только прожектор светит на пустой микрофонной стойке.' },
-            { speaker: 'Фредди', text: 'А, новый охранник.' },
-            { speaker: 'Фредди', text: 'Мы тут готовили небольшое мероприятие на завтра. Особый повод.' },
+            { speaker: 'Бонни', text: 'А, новый охранник.' },
+            { speaker: 'Бонни', text: 'Мы тут готовили небольшое мероприятие на завтра. Особый повод.' },
             { speaker: null, text: 'Ты смотришь на Чику. Она машет тебе. Что-то в ней странно знакомое.' },
             { speaker: 'Чика', text: 'Привет! Узнала?' },
         ],
@@ -281,7 +281,7 @@ export const polinaStory: Record<string, Scene> = {
         id: 'chika_reveal_stage',
         background: 'stage',
         characters: [
-            { name: 'freddy', expression: 'neutral', position: 'stage_left' },
+            { name: 'bonnie', expression: 'happy', position: 'stage_left' },
             { name: 'chika', expression: 'happy', position: 'stage_right' },
         ],
         dialog: [
@@ -307,14 +307,12 @@ export const polinaStory: Record<string, Scene> = {
         id: 'ending_chaos',
         background: 'stage',
         characters: [
-            { name: 'freddy', expression: 'happy', position: 'stage_left' },
-            { name: 'bonnie', expression: 'happy', position: 'center' },
+            { name: 'bonnie', expression: 'happy', position: 'stage_left' },
             { name: 'chika', expression: 'happy', position: 'stage_right' },
         ],
         dialog: [
             { speaker: 'Чика', text: 'Серьёзно. Очень.' },
-            { speaker: 'Фредди', text: 'Я ему сказал, что это плохая идея.' },
-            { speaker: 'Бонни', text: 'Я сказал, что это лучшая идея.' },
+            { speaker: 'Бонни', text: 'А я говорил, что это лучшая идея.' },
             { speaker: null, text: 'В зал, шатаясь, заходит Фокси с заряженным айфоном и открытым Бравлом.' },
             { speaker: 'Фокси', text: 'Ладно, разбирайтесь сами. Я в рейтинговом.' },
             { speaker: null, text: 'Где-то во вселенной рушатся законы физики. Но в пиццерии — тепло.' },
@@ -329,8 +327,7 @@ export const polinaStory: Record<string, Scene> = {
         id: 'ending_heartwarming',
         background: 'stage',
         characters: [
-            { name: 'freddy', expression: 'happy', position: 'stage_left' },
-            { name: 'bonnie', expression: 'happy', position: 'center' },
+            { name: 'bonnie', expression: 'happy', position: 'stage_left' },
             { name: 'chika', expression: 'moved', position: 'stage_right' },
         ],
         dialog: [
@@ -339,7 +336,6 @@ export const polinaStory: Record<string, Scene> = {
             { speaker: 'Чика', text: 'Ну вот. С 8 марта, papagev.' },
             { speaker: 'Чика', text: 'Ты крутая. Это объективно.' },
             { speaker: 'Бонни', text: 'Подтверждаю.' },
-            { speaker: 'Фредди', text: 'И я.' },
             { speaker: null, text: 'Фокси в коридоре что-то бурчит, но незлобно.' },
             { speaker: 'Фокси (за стеной)', text: 'И я тоже. Но тихо. Потому что рейтинговый.' },
             { speaker: null, text: '🌸 С 8-м марта! 🌸' },

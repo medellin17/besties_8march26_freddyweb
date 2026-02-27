@@ -32,7 +32,7 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
             case 'hallway_far': return 'left-[45%] -translate-x-1/2 bottom-[20%] md:bottom-[23%] z-10';
             case 'center_right': return 'right-[5%] md:right-[22%] bottom-[16%] md:bottom-[16%] z-25';
             case 'right': return 'right-[-10%] md:right-[5%] bottom-[25%] md:bottom-[16%] z-20';
-            case 'stage_left': return 'left-[-20%] md:left-[2%] bottom-[10%] md:bottom-[15%] z-20';
+            case 'stage_left': return 'left-[-5%] md:left-[2%] bottom-[10%] md:bottom-[15%] z-20';
             case 'stage_right': return 'right-[5%] md:right-[8%] bottom-[10%] md:bottom-[15%] z-20';
             case 'party_1': return 'left-[-15%] md:left-[0%] bottom-[25%] md:bottom-[16%] z-10';
             case 'party_2': return 'left-[16%] md:left-[22%] bottom-[18%] md:bottom-[16%] z-20';
