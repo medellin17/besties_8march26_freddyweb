@@ -7,6 +7,7 @@ import { SpriteRenderer } from './SpriteRenderer';
 import { useAudio } from '@/hooks/useAudio';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import { Preloader } from './Preloader';
 
 interface VNPlayerProps {
     storyData: Record<string, Scene>;
@@ -148,6 +149,9 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
                 choices={isLastDialog ? scene.choices : undefined}
                 onChoiceResult={handleChoice}
             />
+
+            {/* Silent preloader wrapper */}
+            <Preloader storyData={storyData} />
 
         </div>
     );
