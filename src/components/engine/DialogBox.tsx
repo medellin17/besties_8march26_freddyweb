@@ -18,7 +18,7 @@ export const DialogBox: React.FC<DialogBoxProps> = ({ speaker, text, memeImage, 
     // Optional audio ref for typing sound
 
     const handleClick = () => {
-        if (choices && choices.length > 0) return; // Wait for choice
+        if (isFinished && choices && choices.length > 0) return; // Wait for choice
         if (isFinished) {
             onNext();
         } else {

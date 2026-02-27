@@ -5,13 +5,16 @@ import { useState, useEffect, useRef } from 'react';
 export function useTypewriter(text: string, speed: number = 30) {
     const [displayedText, setDisplayedText] = useState('');
     const [isFinished, setIsFinished] = useState(false);
+    const [prevText, setPrevText] = useState(text);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-    useEffect(() => {
+    if (text !== prevText) {
+        setPrevText(text);
         setDisplayedText('');
         setIsFinished(false);
+    }
 
-        // Quick skip if text is empty
+    useEffect(() => {
         if (!text) {
             setIsFinished(true);
             return;
