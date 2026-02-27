@@ -34,6 +34,10 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
             case 'right': return 'right-[-5%] md:right-[5%] bottom-[25%] md:bottom-[16%] z-20';
             case 'stage_left': return 'left-[-20%] md:left-[2%] bottom-[10%] md:bottom-[15%] z-20';
             case 'stage_right': return 'right-[5%] md:right-[8%] bottom-[10%] md:bottom-[15%] z-20';
+            case 'party_1': return 'left-[-15%] md:left-[0%] bottom-[25%] md:bottom-[16%] z-10';
+            case 'party_2': return 'left-[16%] md:left-[22%] bottom-[18%] md:bottom-[16%] z-20';
+            case 'party_3': return 'right-[16%] md:right-[22%] bottom-[18%] md:bottom-[16%] z-25';
+            case 'party_4': return 'right-[-15%] md:right-[0%] bottom-[25%] md:bottom-[16%] z-15';
             default: return 'left-1/2 -translate-x-1/2 bottom-[15%] md:bottom-[16%] z-30';
         }
     };
@@ -42,6 +46,12 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
         switch (character.position) {
             case 'hallway_far':
                 return 'h-[35vh] md:h-[50vh]';
+            case 'party_1':
+            case 'party_4':
+                return 'h-[31vh] md:h-[65vh]';
+            case 'party_2':
+            case 'party_3':
+                return 'h-[35vh] md:h-[70vh]';
             case 'stage_left':
             case 'stage_right':
                 return 'h-[45vh] md:h-[65vh]';

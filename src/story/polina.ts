@@ -330,10 +330,10 @@ export const polinaStory: Record<string, Scene> = {
         id: 'ending_party',
         background: 'party_room',
         characters: [
-            { name: 'freddy', expression: 'happy', position: 'left' },
-            { name: 'bonnie', expression: 'excited', position: 'center_left' },
-            { name: 'chika', expression: 'excited', position: 'center_right' },
-            { name: 'foxy', expression: 'happy', position: 'right' },
+            { name: 'freddy', expression: 'happy', position: 'party_1' },
+            { name: 'bonnie', expression: 'excited', position: 'party_2' },
+            { name: 'chika', expression: 'excited', position: 'party_3' },
+            { name: 'foxy', expression: 'happy', position: 'party_4' },
         ],
         dialog: [
             { speaker: 'Чика', text: 'О, ей идея понравилась.' },

@@ -32,7 +32,11 @@ export type Position =
     | 'hallway_far'
     | 'center_shifted'
     | 'stage_left'
-    | 'stage_right';
+    | 'stage_right'
+    | 'party_1'
+    | 'party_2'
+    | 'party_3'
+    | 'party_4';
 
 export type ScreenEffect = 'shake' | 'flash' | 'static' | 'blackout';
 

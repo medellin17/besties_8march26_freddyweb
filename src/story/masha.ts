@@ -79,7 +79,7 @@ export const mashaStory: Record<string, Scene> = {
     freddy_arrives: {
         id: 'freddy_arrives',
         background: 'office',
-        characters: [{ name: 'freddy', expression: 'neutral', position: 'left' }],
+        characters: [{ name: 'freddy', expression: 'neutral', position: 'right' }],
         dialog: [
             { speaker: null, text: 'Ты медленно открываешь левую дверь. Там стоит Фредди.' },
             { speaker: null, text: 'Он в цилиндре. С микрофоном. Он смотрит на тебя с выражением человека, который уже видел всякое.' },
@@ -94,7 +94,7 @@ export const mashaStory: Record<string, Scene> = {
     freddy_chat: {
         id: 'freddy_chat',
         background: 'office',
-        characters: [{ name: 'freddy', expression: 'neutral', position: 'left' }],
+        characters: [{ name: 'freddy', expression: 'neutral', position: 'right' }],
         dialog: [
             { speaker: 'Фредди', text: 'У нас сегодня спокойно. Почти.' },
             { speaker: 'Фредди', text: 'Бонни ушёл джемовать в комнату вечеринок. Чика готовит что-то на кухне.' },
@@ -111,7 +111,7 @@ export const mashaStory: Record<string, Scene> = {
     ask_foxy: {
         id: 'ask_foxy',
         background: 'office',
-        characters: [{ name: 'freddy', expression: 'serious', position: 'left' }],
+        characters: [{ name: 'freddy', expression: 'serious', position: 'right' }],
         dialog: [
             { speaker: 'Фредди', text: 'Фокси... особенный.' },
             { speaker: 'Фредди', text: 'Он любит бегать. Быстро. По коридорам. Ночью.' },
@@ -127,7 +127,7 @@ export const mashaStory: Record<string, Scene> = {
     brawl_freddy: {
         id: 'brawl_freddy',
         background: 'office',
-        characters: [{ name: 'freddy', expression: 'surprised', position: 'left' }],
+        characters: [{ name: 'freddy', expression: 'surprised', position: 'right' }],
         dialog: [
             { speaker: 'Фредди', text: 'В... что?' },
             { speaker: null, text: 'Ты объясняешь. Фредди слушает серьёзно, как будто ты рассказываешь ему теорию относительности.' },
@@ -148,7 +148,7 @@ export const mashaStory: Record<string, Scene> = {
     lights_flicker: {
         id: 'lights_flicker',
         background: 'office',
-        characters: [{ name: 'freddy', expression: 'alert', position: 'left' }],
+        characters: [{ name: 'freddy', expression: 'alert', position: 'right' }],
         dialog: [
             { speaker: null, text: 'Свет моргает.' },
             { speaker: null, text: 'Раз. Два.' },
@@ -167,7 +167,7 @@ export const mashaStory: Record<string, Scene> = {
     door_closed: {
         id: 'door_closed',
         background: 'office',
-        characters: [{ name: 'freddy', expression: 'relieved', position: 'left' }],
+        characters: [{ name: 'freddy', expression: 'relieved', position: 'right' }],
         dialog: [
             { speaker: null, text: 'Ты нажимаешь кнопку. Дверь с грохотом захлопывается.' },
             { speaker: null, text: 'БУМ.' },
@@ -197,8 +197,8 @@ export const mashaStory: Record<string, Scene> = {
         id: 'door_open_aftermath',
         background: 'office',
         characters: [
-            { name: 'freddy', expression: 'facepalm', position: 'left' },
-            { name: 'foxy', expression: 'sheepish', position: 'right' },
+            { name: 'freddy', expression: 'facepalm', position: 'right' },
+            { name: 'foxy', expression: 'sheepish', position: 'left' },
         ],
         dialog: [
             { speaker: 'Фокси', text: 'АААААААААА—' },
@@ -215,7 +215,7 @@ export const mashaStory: Record<string, Scene> = {
     after_foxy: {
         id: 'after_foxy',
         background: 'office',
-        characters: [{ name: 'freddy', expression: 'neutral', position: 'left' }],
+        characters: [{ name: 'freddy', expression: 'neutral', position: 'right' }],
         dialog: [
             { speaker: null, text: 'Всё успокоилось. Фокси где-то заряжается.' },
             { speaker: 'Фредди', text: 'Слушай. Хочу тебе кое-что показать.' },
@@ -231,7 +231,7 @@ export const mashaStory: Record<string, Scene> = {
     cameras_check: {
         id: 'cameras_check',
         background: 'office',
-        characters: [{ name: 'freddy', expression: 'patient', position: 'left' }],
+        characters: [{ name: 'freddy', expression: 'patient', position: 'right' }],
         dialog: [
             { speaker: null, text: 'Ты переключаешь камеры. Всё спокойно.' },
             { speaker: null, text: 'Кухня. Стоп.' },
@@ -332,10 +332,10 @@ export const mashaStory: Record<string, Scene> = {
         id: 'ending_party',
         background: 'party_room',
         characters: [
-            { name: 'freddy', expression: 'happy', position: 'left' },
-            { name: 'bonnie', expression: 'happy', position: 'center_left' },
-            { name: 'chika', expression: 'excited', position: 'center_right' },
-            { name: 'foxy', expression: 'happy', position: 'right' },
+            { name: 'freddy', expression: 'happy', position: 'party_1' },
+            { name: 'bonnie', expression: 'happy', position: 'party_2' },
+            { name: 'chika', expression: 'excited', position: 'party_3' },
+            { name: 'foxy', expression: 'happy', position: 'party_4' },
         ],
         dialog: [
             { speaker: 'Чика', text: 'Вот это лучший ответ.' },
