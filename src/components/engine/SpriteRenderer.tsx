@@ -25,26 +25,29 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
 
     const getPositionClass = () => {
         switch (character.position) {
-            case 'left': return 'left-[-10%] md:left-[-5%] bottom-[15%] md:bottom-[20%] z-20';
-            case 'center_left': return 'left-[10%] md:left-[20%] bottom-[18%] md:bottom-[22%] z-25';
-            case 'center': return 'left-1/2 -translate-x-1/2 bottom-[20%] md:bottom-[25%] z-30';
-            case 'center_right': return 'right-[10%] md:right-[20%] bottom-[18%] md:bottom-[22%] z-25';
-            case 'right': return 'right-[-10%] md:right-[-5%] bottom-[15%] md:bottom-[20%] z-20';
-            default: return 'left-1/2 -translate-x-1/2 bottom-[20%] md:bottom-[25%] z-30';
+            case 'left': return 'left-[-15%] md:left-[5%] bottom-[15%] md:bottom-[18%] z-20';
+            case 'center_left': return 'left-[5%] md:left-[22%] bottom-[16%] md:bottom-[19%] z-25';
+            case 'center': return 'left-1/2 -translate-x-1/2 bottom-[15%] md:bottom-[18%] z-30';
+            case 'hallway_far': return 'left-[45%] -translate-x-1/2 bottom-[20%] md:bottom-[25%] z-10';
+            case 'center_right': return 'right-[5%] md:right-[22%] bottom-[16%] md:bottom-[19%] z-25';
+            case 'right': return 'right-[-15%] md:right-[5%] bottom-[20%] md:bottom-[22%] z-20';
+            default: return 'left-1/2 -translate-x-1/2 bottom-[15%] md:bottom-[18%] z-30';
         }
     };
 
     const getSizeClass = () => {
         switch (character.position) {
+            case 'hallway_far':
+                return 'h-[35vh] md:h-[50vh]';
             case 'left':
             case 'right':
-                return 'h-[60vh] md:h-[75vh]';
+                return 'h-[40vh] md:h-[65vh]';
             case 'center_left':
             case 'center_right':
-                return 'h-[65vh] md:h-[80vh]';
+                return 'h-[43vh] md:h-[70vh]';
             case 'center':
             default:
-                return 'h-[70vh] md:h-[85vh]';
+                return 'h-[50vh] md:h-[75vh]';
         }
     };
 

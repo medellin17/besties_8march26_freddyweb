@@ -180,7 +180,7 @@ export const polinaStory: Record<string, Scene> = {
     door_open: {
         id: 'door_open',
         background: 'hallway',
-        characters: [{ name: 'foxy', expression: 'jumpscare', position: 'center' }],
+        characters: [{ name: 'foxy', expression: 'jumpscare', position: 'hallway_far' }],
         dialog: [
             { speaker: null, text: 'Ты осторожно выглядываешь в коридор.' },
         ],
