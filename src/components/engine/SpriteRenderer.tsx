@@ -1,14 +1,14 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { forwardRef } from 'react';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import { CharacterOnScreen } from '@/story/types';
 
-interface SpriteRendererProps {
+interface SpriteRendererProps extends Omit<HTMLMotionProps<"div">, "children"> {
     character: CharacterOnScreen;
 }
 
-export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => {
+export const SpriteRenderer = forwardRef<HTMLDivElement, SpriteRendererProps>(({ character, ...props }, ref) => {
     // Approximate mappings for Fnaf-pixel.png
     // Freddy(0), Bonnie(1), Chica(2), Foxy(3)
     // Each sprite might be around 64x64 or 128x128. Let's use generic styles for now
@@ -88,11 +88,14 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+            ref={ref}
+            layout="position"
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 30 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             className={`absolute ${getPositionClass()} flex flex-col items-center pointer-events-none`}
+            {...props}
         >
             <div className={`${getSizeClass()} w-auto flex items-end justify-center overflow-hidden drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]`}>
                 <img
@@ -112,4 +115,6 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
             </div>
         </motion.div>
     );
-}
+});
+
+SpriteRenderer.displayName = 'SpriteRenderer';

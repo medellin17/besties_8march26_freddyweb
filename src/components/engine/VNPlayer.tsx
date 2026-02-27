@@ -96,9 +96,17 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className={`absolute inset-0 bg-cover bg-center bg-no-repeat ${bgUrl ? '' : 'bg-black'}`}
-                style={bgUrl ? { backgroundImage: `url("${bgUrl}")` } : undefined}
+                className="absolute inset-0 z-0 bg-black"
             >
+                {bgUrl && (
+                    <img
+                        src={bgUrl}
+                        alt="background"
+                        loading="eager"
+                        fetchPriority="high"
+                        className="absolute inset-0 w-full h-full object-cover"
+                    />
+                )}
                 {/* Dynamic filters based on effect */}
                 {scene.effect === 'flash' && <div className="absolute inset-0 bg-white z-10 animate-ping opacity-50" />}
                 {scene.effect === 'blackout' && <div className="absolute inset-0 bg-black z-50 animate-pulse" />}
@@ -111,9 +119,9 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
                 transition={{ duration: 0.4 }}
             >
                 {/* Sprites Layer */}
-                <AnimatePresence>
-                    {scene.characters.map((char, i) => (
-                        <SpriteRenderer key={`${char.name}-${i}`} character={char} />
+                <AnimatePresence mode="popLayout">
+                    {scene.characters.map((char) => (
+                        <SpriteRenderer key={char.name} character={char} />
                     ))}
                 </AnimatePresence>
             </motion.div>
