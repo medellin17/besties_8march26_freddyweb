@@ -28,7 +28,11 @@ export type Position =
     | 'center_left'
     | 'center'
     | 'center_right'
-    | 'right';
+    | 'right'
+    | 'hallway_far'
+    | 'center_shifted'
+    | 'stage_left'
+    | 'stage_right';
 
 export type ScreenEffect = 'shake' | 'flash' | 'static' | 'blackout';
 

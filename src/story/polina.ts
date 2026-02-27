@@ -245,8 +245,8 @@ export const polinaStory: Record<string, Scene> = {
         id: 'stage_scene',
         background: 'stage',
         characters: [
-            { name: 'freddy', expression: 'neutral', position: 'left' },
-            { name: 'chika', expression: 'excited', position: 'right' },
+            { name: 'freddy', expression: 'neutral', position: 'stage_left' },
+            { name: 'chika', expression: 'excited', position: 'stage_right' },
         ],
         dialog: [
             { speaker: null, text: 'Сцена тёмная, только прожектор светит на пустой микрофонной стойке.' },
@@ -285,9 +285,9 @@ export const polinaStory: Record<string, Scene> = {
         id: 'ending_chaos',
         background: 'stage',
         characters: [
-            { name: 'freddy', expression: 'happy', position: 'left' },
+            { name: 'freddy', expression: 'happy', position: 'stage_left' },
             { name: 'bonnie', expression: 'happy', position: 'center' },
-            { name: 'chika', expression: 'happy', position: 'right' },
+            { name: 'chika', expression: 'happy', position: 'stage_right' },
         ],
         dialog: [
             { speaker: 'Чика', text: 'Серьёзно. Очень.' },
@@ -307,9 +307,9 @@ export const polinaStory: Record<string, Scene> = {
         id: 'ending_heartwarming',
         background: 'stage',
         characters: [
-            { name: 'freddy', expression: 'happy', position: 'left' },
+            { name: 'freddy', expression: 'happy', position: 'stage_left' },
             { name: 'bonnie', expression: 'happy', position: 'center' },
-            { name: 'chika', expression: 'moved', position: 'right' },
+            { name: 'chika', expression: 'moved', position: 'stage_right' },
         ],
         dialog: [
             { speaker: 'Чика', text: '...Правда?' },
