@@ -19,12 +19,19 @@ export const Preloader: React.FC<PreloaderProps> = ({ storyData }) => {
         collectedAssets.add('/assets/bg/stage.png');
         collectedAssets.add('/assets/bg/party_room.png');
 
-        // Collect all character sprites used in the story
+        // Collect all character sprites and memes used in the story
         for (const sceneId in storyData) {
             const scene = storyData[sceneId];
             if (scene.characters) {
                 scene.characters.forEach(char => {
                     collectedAssets.add(`/assets/sprites/${char.name}.png`);
+                });
+            }
+            if (scene.dialog) {
+                scene.dialog.forEach(line => {
+                    if (line.memeImage) {
+                        collectedAssets.add(`/assets/memes/${line.memeImage}`);
+                    }
                 });
             }
         }

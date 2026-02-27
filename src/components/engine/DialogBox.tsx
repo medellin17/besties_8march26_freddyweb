@@ -67,23 +67,33 @@ export const DialogBox: React.FC<DialogBoxProps> = ({ speaker, text, memeImage, 
             <AnimatePresence>
                 {isFinished && choices && choices.length > 0 && (
                     <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
                         className="flex flex-col gap-2 mb-2"
                     >
                         {choices.map((choice, i) => (
                             <motion.button
                                 key={i}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: i * 0.15 }}
-                                whileHover={{ scale: 1.02, x: 5 }}
-                                whileTap={{ scale: 0.98 }}
-                                onClick={() => onChoiceResult?.(choice.nextId)}
-                                className="group relative flex items-center gap-3 bg-black/90 border border-white/20 hover:border-red-500/50 hover:bg-red-950/30 text-white font-sans text-sm md:text-base p-4 rounded-lg shadow-lg overflow-hidden transition-all duration-300"
+                                initial={{ opacity: 0, y: 15 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{
+                                    delay: i * 0.1,
+                                    type: 'spring',
+                                    stiffness: 260,
+                                    damping: 20
+                                }}
+                                whileHover={{ scale: 1.01, x: 2 }}
+                                whileTap={{ scale: 0.95, backgroundColor: 'rgba(153, 27, 27, 0.4)' }}
+                                onClick={() => {
+                                    // Visual feedback before switching
+                                    setTimeout(() => {
+                                        onChoiceResult?.(choice.nextId);
+                                    }, 150);
+                                }}
+                                className="group relative flex items-center gap-3 bg-black/90 border border-white/10 hover:border-red-500/40 hover:bg-black text-white font-sans text-sm md:text-base p-4 rounded-lg shadow-xl overflow-hidden transition-all duration-300"
                             >
-                                <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/5 to-red-500/0 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <div className="z-10 text-red-500 group-hover:text-red-400 group-hover:scale-110 transition-transform">
+                                <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/10 to-red-500/0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="z-10 text-red-500/80 group-hover:text-red-400 transition-colors">
                                     {getChoiceIcon(choice.text)}
                                 </div>
                                 <span className="z-10 font-medium tracking-wide">{choice.text}</span>
