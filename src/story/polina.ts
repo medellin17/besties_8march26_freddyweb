@@ -238,7 +238,7 @@ export const polinaStory: Record<string, Scene> = {
             { speaker: '???', text: 'Тра-та-та-та-та~' },
             { speaker: null, text: 'В дверях появляется Чика.' },
         ],
-        nextId: 'chika_reveal',
+        nextId: 'chika_reveal_office',
     },
 
     stage_scene: {
@@ -255,13 +255,35 @@ export const polinaStory: Record<string, Scene> = {
             { speaker: null, text: 'Ты смотришь на Чику. Она машет тебе. Что-то в ней странно знакомое.' },
             { speaker: 'Чика', text: 'Привет! Узнала?' },
         ],
-        nextId: 'chika_reveal',
+        nextId: 'chika_reveal_stage',
     },
 
-    chika_reveal: {
-        id: 'chika_reveal',
+    chika_reveal_office: {
+        id: 'chika_reveal_office',
         background: 'office',
         characters: [{ name: 'chika', expression: 'happy', position: 'center_shifted' }],
+        dialog: [
+            { speaker: 'Чика', text: 'Ну как, не узнала?' },
+            { speaker: null, text: 'Чика достаёт откуда-то мятую фотку. Протягивает тебе.' },
+            { speaker: null, text: 'На фото — три аниматроника. И три лица. Твоё. Машино. И... Глеба.', memeImage: 'photo_2026-02-24_20-59-44.jpg' },
+            { speaker: 'Чика', text: 'Это я, короче. Привет. Phone Guy — тоже я.' },
+            { speaker: 'Чика', text: 'Хотел поздравить лично. Ну... в виде курицы. Прости.' },
+            { speaker: null, text: 'Ты смотришь на Чику (то есть Глеба). Потом на фотку. Потом снова на Чику.' },
+        ],
+        choices: [
+            { text: '🤦 "Ты серьёзно?"', nextId: 'ending_chaos' },
+            { text: '❤️ "Это мило, спасибо"', nextId: 'ending_heartwarming' },
+            { text: '🔥 "Хочу в беседу, позви всех"', nextId: 'ending_party' },
+        ],
+    },
+
+    chika_reveal_stage: {
+        id: 'chika_reveal_stage',
+        background: 'stage',
+        characters: [
+            { name: 'freddy', expression: 'neutral', position: 'stage_left' },
+            { name: 'chika', expression: 'happy', position: 'stage_right' },
+        ],
         dialog: [
             { speaker: 'Чика', text: 'Ну как, не узнала?' },
             { speaker: null, text: 'Чика достаёт откуда-то мятую фотку. Протягивает тебе.' },
