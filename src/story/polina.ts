@@ -53,7 +53,6 @@ export const polinaStory: Record<string, Scene> = {
             { speaker: 'Phone Guy', text: 'Хотя...' },
             { speaker: 'Phone Guy', text: '*гудки*' },
         ],
-        sound: 'ring',
         nextId: 'first_look',
     },
 

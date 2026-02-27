@@ -53,7 +53,6 @@ export const mashaStory: Record<string, Scene> = {
             { speaker: 'Phone Guy', text: '...наверное.' },
             { speaker: 'Phone Guy', text: '*гудки*' },
         ],
-        sound: 'ring',
         nextId: 'first_look',
     },
 

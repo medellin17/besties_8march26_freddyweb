@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 
 export function useAudio() {
     const ambientRef = useRef<HTMLAudioElement | null>(null);
+    const lastPlayedRef = useRef<{ [key: string]: number }>({});
 
     useEffect(() => {
         return () => {
@@ -15,6 +16,12 @@ export function useAudio() {
 
     const playSound = (name: string, loop: boolean = false) => {
         try {
+            const now = Date.now();
+            if (lastPlayedRef.current[name] && now - lastPlayedRef.current[name] < 200) {
+                return null; // Prevent double-play from Strict Mode or rapid clicks
+            }
+            lastPlayedRef.current[name] = now;
+
             const audio = new Audio(`/assets/audio/${name}.mp3`);
             audio.loop = loop;
             if (name === 'buzz-fan-florescent2' || name === 'ambience-2') {
