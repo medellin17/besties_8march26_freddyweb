@@ -17,10 +17,33 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
     const router = useRouter();
     const [currentSceneId, setCurrentSceneId] = useState<string>(startSceneId);
     const [dialogIndex, setDialogIndex] = useState(0);
+    const [isBgLoaded, setIsBgLoaded] = useState(false);
 
     const { playSound, startAmbient, stopAmbient } = useAudio();
 
     const scene = storyData[currentSceneId];
+
+    // Maps scene.background to an image URL
+    const getBgUrl = () => {
+        if (!scene) return null;
+        switch (scene.background) {
+            case 'office': return '/assets/bg/office.png';
+            case 'hallway': return '/assets/bg/hallway.png';
+            case 'stage': return '/assets/bg/stage.png';
+            case 'party_room': return '/assets/bg/party_room.png';
+            default: return null;
+        }
+    };
+
+    const bgUrl = getBgUrl();
+
+    useEffect(() => {
+        if (bgUrl) {
+            setIsBgLoaded(false);
+        } else {
+            setIsBgLoaded(true);
+        }
+    }, [bgUrl]);
 
     if (!scene) return <div className="text-white h-screen flex items-center justify-center" style={{ fontFamily: '"Press Start 2P"' }}>Loading...</div>;
 
@@ -74,19 +97,6 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
         setDialogIndex(0);
     };
 
-    // Maps scene.background to an image URL
-    const getBgUrl = () => {
-        switch (scene.background) {
-            case 'office': return '/assets/bg/office.png';
-            case 'hallway': return '/assets/bg/hallway.png';
-            case 'stage': return '/assets/bg/stage.png';
-            case 'party_room': return '/assets/bg/party_room.png';
-            default: return null;
-        }
-    };
-
-    const bgUrl = getBgUrl();
-
     return (
         <div className="relative w-full h-[100dvh] overflow-hidden crt bg-black selection:bg-red-900/50 flex flex-col justify-end">
 
@@ -105,6 +115,7 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
                         loading="eager"
                         fetchPriority="high"
                         className="absolute inset-0 w-full h-full object-cover"
+                        onLoad={() => setIsBgLoaded(true)}
                     />
                 )}
                 {/* Dynamic filters based on effect */}
@@ -119,11 +130,13 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
                 transition={{ duration: 0.4 }}
             >
                 {/* Sprites Layer */}
-                <AnimatePresence mode="popLayout">
-                    {scene.characters.map((char) => (
-                        <SpriteRenderer key={char.name} character={char} />
-                    ))}
-                </AnimatePresence>
+                {isBgLoaded && (
+                    <AnimatePresence>
+                        {scene.characters.map((char) => (
+                            <SpriteRenderer key={char.name} character={char} />
+                        ))}
+                    </AnimatePresence>
+                )}
             </motion.div>
 
             {/* UI / Dialog Layer */}
