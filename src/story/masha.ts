@@ -67,7 +67,7 @@ export const mashaStory: Record<string, Scene> = {
             { speaker: null, text: 'Фредди, кажется, смотрит прямо в камеру.' },
             { speaker: null, text: 'Ты отводишь взгляд.' },
             { speaker: null, text: '...Нет. Точно показалось.' },
-            { speaker: null, text: 'Кто-то стучится в дверь слева.' },
+            { speaker: null, text: 'Кто-то стучится в дверь справа.' },
         ],
         nextId: 'freddy_arrives',
     },
@@ -81,7 +81,7 @@ export const mashaStory: Record<string, Scene> = {
         background: 'office',
         characters: [{ name: 'freddy', expression: 'neutral', position: 'right' }],
         dialog: [
-            { speaker: null, text: 'Ты медленно открываешь левую дверь. Там стоит Фредди.' },
+            { speaker: null, text: 'Ты медленно открываешь правую дверь. Там стоит Фредди.' },
             { speaker: null, text: 'Он в цилиндре. С микрофоном. Он смотрит на тебя с выражением человека, который уже видел всякое.' },
             { speaker: 'Фредди', text: 'Здравствуй.' },
             { speaker: 'Фредди', text: 'Ты новый охранник.' },

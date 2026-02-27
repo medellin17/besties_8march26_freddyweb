@@ -31,7 +31,7 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
             case 'center_shifted': return 'left-1/2 -translate-x-1/2 md:left-[55%] bottom-[25%] md:bottom-[16%] z-30';
             case 'hallway_far': return 'left-[45%] -translate-x-1/2 bottom-[20%] md:bottom-[23%] z-10';
             case 'center_right': return 'right-[5%] md:right-[22%] bottom-[16%] md:bottom-[16%] z-25';
-            case 'right': return 'right-[-5%] md:right-[5%] bottom-[25%] md:bottom-[16%] z-20';
+            case 'right': return 'right-[-10%] md:right-[5%] bottom-[25%] md:bottom-[16%] z-20';
             case 'stage_left': return 'left-[-20%] md:left-[2%] bottom-[10%] md:bottom-[15%] z-20';
             case 'stage_right': return 'right-[5%] md:right-[8%] bottom-[10%] md:bottom-[15%] z-20';
             case 'party_1': return 'left-[-15%] md:left-[0%] bottom-[25%] md:bottom-[16%] z-10';
@@ -43,29 +43,44 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
     };
 
     const getSizeClass = () => {
+        let baseSize = '';
         switch (character.position) {
             case 'hallway_far':
-                return 'h-[35vh] md:h-[50vh]';
+                baseSize = 'h-[35vh] md:h-[50vh]';
+                break;
             case 'party_1':
             case 'party_4':
-                return 'h-[31vh] md:h-[65vh]';
+                baseSize = 'h-[31vh] md:h-[65vh]';
+                break;
             case 'party_2':
             case 'party_3':
-                return 'h-[35vh] md:h-[70vh]';
+                baseSize = 'h-[35vh] md:h-[70vh]';
+                break;
             case 'stage_left':
             case 'stage_right':
-                return 'h-[45vh] md:h-[65vh]';
+                baseSize = 'h-[45vh] md:h-[65vh]';
+                break;
             case 'left':
             case 'right':
-                return 'h-[40vh] md:h-[65vh]';
+                baseSize = 'h-[40vh] md:h-[65vh]';
+                break;
             case 'center_left':
             case 'center_right':
-                return 'h-[43vh] md:h-[70vh]';
+                baseSize = 'h-[43vh] md:h-[70vh]';
+                break;
             case 'center_shifted':
             case 'center':
             default:
-                return 'h-[50vh] md:h-[75vh]';
+                baseSize = 'h-[50vh] md:h-[75vh]';
+                break;
         }
+
+        // Freddy naturally looks smaller because of his wide aspect ratio, so we scale his frame up slightly
+        if (character.name === 'freddy') {
+            return `${baseSize} scale-[1.10] origin-bottom`;
+        }
+
+        return baseSize;
     };
 
     return (
