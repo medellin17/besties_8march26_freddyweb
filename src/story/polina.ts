@@ -14,7 +14,7 @@ export const polinaStory: Record<string, Scene> = {
             { speaker: null, text: 'Для Полины.' },
             { speaker: null, text: 'С 8 марта!' },
             { speaker: null, text: 'Ты умеешь делать любой день веселее просто фактом своего существования. Это важный талант. 🐤' },
-            { speaker: null, text: '— Глеб' },
+            { speaker: null, text: '— Тот самый парень с телефона' },
         ],
         nextId: 'intro',
     },
@@ -94,7 +94,7 @@ export const polinaStory: Record<string, Scene> = {
         background: 'office',
         characters: [{ name: 'bonnie', expression: 'happy', position: 'right' }],
         dialog: [
-            { speaker: 'Бонни', text: 'Глеб просил передать привет. И что камеры сегодня опять лагают.' },
+            { speaker: 'Бонни', text: 'Тот парень просил передать привет. И что камеры сегодня опять лагают.' },
             { speaker: null, text: 'Ты смотришь на монитор. Картинка в коридоре размытая, как фото 2008 года на кнопочный телефон.' },
             { speaker: 'Бонни', text: '*смотрит в монитор* Ахуенное качество.' },
             { speaker: 'Бонни', text: 'Шакал ебучий.', memeImage: 'photo_2026-02-18_23-21-15.jpg' },
@@ -126,7 +126,7 @@ export const polinaStory: Record<string, Scene> = {
         background: 'office',
         characters: [{ name: 'bonnie', expression: 'neutral', position: 'right' }],
         dialog: [
-            { speaker: 'Бонни', text: 'Ответственная. Глеб говорил.' },
+            { speaker: 'Бонни', text: 'Ответственная. Наш менеджер говорил.' },
             { speaker: null, text: 'Ты переключаешь камеры. Коридор — пусто. Сцена — пусто. Комната вечеринок — стоп.' },
             { speaker: null, text: 'На камере 3 что-то движется в темноте. Медленно. В сторону коридора.' },
             { speaker: 'Бонни', text: 'А. Это Фокси.' },
