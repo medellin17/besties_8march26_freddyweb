@@ -25,13 +25,14 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
 
     const getPositionClass = () => {
         switch (character.position) {
-            case 'left': return 'left-[-15%] md:left-[5%] bottom-[15%] md:bottom-[18%] z-20';
-            case 'center_left': return 'left-[5%] md:left-[22%] bottom-[16%] md:bottom-[19%] z-25';
-            case 'center': return 'left-1/2 -translate-x-1/2 bottom-[15%] md:bottom-[18%] z-30';
-            case 'hallway_far': return 'left-[45%] -translate-x-1/2 bottom-[20%] md:bottom-[25%] z-10';
-            case 'center_right': return 'right-[5%] md:right-[22%] bottom-[16%] md:bottom-[19%] z-25';
-            case 'right': return 'right-[-15%] md:right-[5%] bottom-[20%] md:bottom-[22%] z-20';
-            default: return 'left-1/2 -translate-x-1/2 bottom-[15%] md:bottom-[18%] z-30';
+            case 'left': return 'left-[-5%] md:left-[5%] bottom-[25%] md:bottom-[16%] z-20';
+            case 'center_left': return 'left-[5%] md:left-[22%] bottom-[16%] md:bottom-[16%] z-25';
+            case 'center': return 'left-1/2 -translate-x-1/2 bottom-[15%] md:bottom-[16%] z-30';
+            case 'center_shifted': return 'left-1/2 -translate-x-1/2 md:left-[55%] bottom-[25%] md:bottom-[16%] z-30';
+            case 'hallway_far': return 'left-[45%] -translate-x-1/2 bottom-[20%] md:bottom-[23%] z-10';
+            case 'center_right': return 'right-[5%] md:right-[22%] bottom-[16%] md:bottom-[16%] z-25';
+            case 'right': return 'right-[-5%] md:right-[5%] bottom-[25%] md:bottom-[16%] z-20';
+            default: return 'left-1/2 -translate-x-1/2 bottom-[15%] md:bottom-[16%] z-30';
         }
     };
 
@@ -45,6 +46,7 @@ export const SpriteRenderer: React.FC<SpriteRendererProps> = ({ character }) => 
             case 'center_left':
             case 'center_right':
                 return 'h-[43vh] md:h-[70vh]';
+            case 'center_shifted':
             case 'center':
             default:
                 return 'h-[50vh] md:h-[75vh]';

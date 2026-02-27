@@ -261,7 +261,7 @@ export const polinaStory: Record<string, Scene> = {
     chika_reveal: {
         id: 'chika_reveal',
         background: 'office',
-        characters: [{ name: 'chika', expression: 'happy', position: 'center' }],
+        characters: [{ name: 'chika', expression: 'happy', position: 'center_shifted' }],
         dialog: [
             { speaker: 'Чика', text: 'Ну как, не узнала?' },
             { speaker: null, text: 'Чика достаёт откуда-то мятую фотку. Протягивает тебе.' },
