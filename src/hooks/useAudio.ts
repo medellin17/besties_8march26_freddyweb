@@ -66,6 +66,12 @@ export function useAudio() {
         const src = '/assets/audio/buzz-fan-florescent2.mp3';
         const targetVol = ambientTargetVolRef.current;
 
+        // MP3 ambience often has a non-gapless seam and a slightly "different" start.
+        // Skip a tiny intro and loop with overlap + equal-power crossfade to hide the seam.
+        const LOOP_START_SEC = 0.25;
+        const PRE_ROLL_SEC = 0.45;
+        const CROSSFADE_SEC = 0.22;
+
         if (!ambientARef.current) {
             ambientARef.current = new Audio(src);
             ambientARef.current.loop = false;
@@ -92,8 +98,7 @@ export function useAudio() {
 
         // Seamless-ish loop via short crossfade to hide the audible seam.
         const CHECK_INTERVAL_MS = 100;
-        const CROSSFADE_SEC = 0.35;
-        const FADE_STEPS = 20;
+        const FADE_STEPS = 24;
         const fadeStepMs = Math.max(10, Math.floor((CROSSFADE_SEC * 1000) / FADE_STEPS));
 
         if (ambientTimerRef.current) return;
@@ -108,40 +113,47 @@ export function useAudio() {
             const duration = current.duration;
             if (!Number.isFinite(duration) || duration <= 0) return;
 
-            if (duration - current.currentTime <= CROSSFADE_SEC + 0.05) {
+            const loopStart = Math.min(Math.max(0, LOOP_START_SEC), Math.max(0, duration - 0.5));
+            const remaining = duration - current.currentTime;
+
+            // Ensure the next track is already playing at 0 volume before we start fading.
+            if (remaining <= PRE_ROLL_SEC + CROSSFADE_SEC) {
+                if (next.paused) {
+                    try {
+                        next.pause();
+                        next.currentTime = loopStart;
+                        next.volume = 0;
+                    } catch {
+                        // ignore
+                    }
+
+                    const p = next.play();
+                    if (p !== undefined) {
+                        p.catch(error => {
+                            console.log('[Audio] Ambient autoplay prevented (pre-roll):', error);
+                        });
+                    }
+                }
+            }
+
+            if (remaining <= CROSSFADE_SEC + 0.03) {
                 ambientCrossfadingRef.current = true;
 
-                try {
-                    next.pause();
-                    next.currentTime = 0;
-                    next.volume = 0;
-                } catch {
-                    // ignore
-                }
-
-                const p = next.play();
-                if (p !== undefined) {
-                    p.catch(error => {
-                        console.log('[Audio] Ambient autoplay prevented (crossfade):', error);
-                        ambientCrossfadingRef.current = false;
-                    });
-                }
-
                 let step = 0;
-                const startVol = current.volume;
                 const fadeTimer = window.setInterval(() => {
                     step += 1;
                     const t = Math.min(1, step / FADE_STEPS);
-                    const vIn = targetVol * t;
-                    const vOut = startVol * (1 - t);
-                    next.volume = vIn;
+                    // Equal-power crossfade reduces perceived dip/boost vs linear ramps.
+                    const vOut = targetVol * Math.cos(t * Math.PI * 0.5);
+                    const vIn = targetVol * Math.sin(t * Math.PI * 0.5);
                     current.volume = vOut;
+                    next.volume = vIn;
 
                     if (t >= 1) {
                         window.clearInterval(fadeTimer);
                         current.pause();
                         try {
-                            current.currentTime = 0;
+                            current.currentTime = loopStart;
                         } catch {
                             // ignore
                         }
