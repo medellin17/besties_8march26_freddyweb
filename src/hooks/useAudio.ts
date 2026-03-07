@@ -25,15 +25,15 @@ export function useAudio() {
             const audio = new Audio(`/assets/audio/${name}.mp3`);
             audio.loop = loop;
             if (name === 'buzz-fan-florescent2' || name === 'ambience-2') {
-                audio.volume = 0.2; // Lowered ambient
+                audio.volume = 0.12; // Ambient should sit behind dialogue
             } else if (name === 'ring') {
-                audio.volume = 0.4; // Lowered ring
+                audio.volume = 0.34;
             } else if (name === 'pound-2') {
-                audio.volume = 0.5; // Lowered door sound
+                audio.volume = 0.42;
             } else if (name === 'scream55') {
-                audio.volume = 0.4; // Controlled jumpscare volume
+                audio.volume = 0.32;
             } else {
-                audio.volume = 0.5; // Lowered default (chimes, running)
+                audio.volume = 0.42;
             }
 
             const playPromise = audio.play();
@@ -54,7 +54,7 @@ export function useAudio() {
         if (!ambientRef.current) {
             ambientRef.current = new Audio('/assets/audio/buzz-fan-florescent2.mp3');
             ambientRef.current.loop = true;
-            ambientRef.current.volume = 0.3;
+            ambientRef.current.volume = 0.14;
         }
 
         const playPromise = ambientRef.current.play();
