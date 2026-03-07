@@ -77,9 +77,9 @@ export const polinaStory: Record<string, Scene> = {
     bonnie_arrives: {
         id: 'bonnie_arrives',
         background: 'office',
-        characters: [],
+        characters: [{ name: 'bonnie', expression: 'neutral', position: 'right' }],
         dialog: [
-            { speaker: null, text: 'Из коридора слышен тихий перебор гитарных струн.' },
+            { speaker: null, text: 'Из коридора слышен тихий перебор гитарных струн.', characters: [] },
             {
                 speaker: null,
                 text: 'В дверном проёме появляется Бонни. Он смотрит на тебя. Ты смотришь на него.',
@@ -309,8 +309,8 @@ export const polinaStory: Record<string, Scene> = {
             { speaker: null, text: 'Ты смотришь на Чику (то есть Глеба). Потом на фотку. Потом снова на Чику.' },
         ],
         choices: [
-            { text: '🤦 "Ты серьёзно?"', nextId: 'ending_chaos' },
-            { text: '❤️ "Это мило, спасибо"', nextId: 'ending_heartwarming' },
+            { text: '🤯 "Ты серьёзно?"', nextId: 'ending_chaos' },
+            { text: '🥰 "Это мило, спасибо"', nextId: 'ending_heartwarming' },
             { text: '🔥 "Хочу в беседу, позви всех"', nextId: 'ending_party' },
         ],
     },

@@ -295,7 +295,7 @@ export const mashaStory: Record<string, Scene> = {
         choices: [
             { text: '🤣 "Вы безумные"', nextId: 'ending_chaos' },
             { text: '🥺 "Это лучшее что я видела"', nextId: 'ending_heartwarming' },
-            { text: '🎉 "Режь торт, зови всех"', nextId: 'ending_party' },
+            { text: '🎉 "Накрывай поляну, зови всех"', nextId: 'ending_party' },
         ],
     },
 

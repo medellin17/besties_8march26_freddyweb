@@ -151,9 +151,6 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
                         onLoad={() => setIsBgLoaded(true)}
                     />
                 )}
-                {/* Dynamic filters based on effect */}
-                {overlayEffect === 'flash' && <div className="absolute inset-0 bg-white z-40 opacity-75" />}
-                {overlayEffect === 'blackout' && <div className="absolute inset-0 bg-black z-50" />}
             </motion.div>
 
             {/* Shake Effect Wrapper */}
@@ -171,6 +168,10 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
                     </AnimatePresence>
                 )}
             </motion.div>
+
+            {/* Full-screen one-shot overlay effect */}
+            {overlayEffect === 'flash' && <div className="absolute inset-0 z-[60] bg-white opacity-75 pointer-events-none" />}
+            {overlayEffect === 'blackout' && <div className="absolute inset-0 z-[60] bg-black pointer-events-none" />}
 
             {/* UI / Dialog Layer */}
             <DialogBox
