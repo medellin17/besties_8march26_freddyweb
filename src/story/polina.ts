@@ -144,9 +144,23 @@ export const polinaStory: Record<string, Scene> = {
         background: 'office',
         characters: [{ name: 'bonnie', expression: 'surprised', position: 'right' }],
         dialog: [
-            { speaker: null, text: 'Свет моргает. Раз. Два. Три.' },
-            { speaker: null, text: 'В коридоре слышен топот.' },
-            { speaker: null, text: 'Быстрый. Приближающийся.' },
+            { speaker: null, text: 'Свет моргает.', effect: 'blackout', characters: [] },
+            {
+                speaker: null,
+                text: 'Свет возвращается. В конце коридора уже стоит Фокси.',
+                characters: [
+                    { name: 'bonnie', expression: 'surprised', position: 'right' },
+                    { name: 'foxy', expression: 'jumpscare', position: 'hallway_far' },
+                ],
+            },
+            {
+                speaker: null,
+                text: 'В коридоре слышен топот. Быстрый. Приближающийся.',
+                characters: [
+                    { name: 'bonnie', expression: 'surprised', position: 'right' },
+                    { name: 'foxy', expression: 'jumpscare', position: 'hallway_far' },
+                ],
+            },
             { speaker: null, text: 'Ты смотришь в монитор на тёмный силуэт в конце коридора.' },
             { speaker: null, text: 'Мысль: «Разъебу ли я это в теннис?»', memeImage: 'photo_2026-02-18_23-27-28.jpg' },
             { speaker: 'Бонни', text: 'О нет.' },

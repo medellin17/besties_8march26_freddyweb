@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Scene } from '@/story/types';
+import { Scene, ScreenEffect } from '@/story/types';
 import { DialogBox } from './DialogBox';
 import { SpriteRenderer } from './SpriteRenderer';
 import { useAudio } from '@/hooks/useAudio';
@@ -19,6 +19,7 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
     const [currentSceneId, setCurrentSceneId] = useState<string>(startSceneId);
     const [dialogIndex, setDialogIndex] = useState(0);
     const [isBgLoaded, setIsBgLoaded] = useState(false);
+    const [overlayEffect, setOverlayEffect] = useState<ScreenEffect | null>(null);
 
     const { playSound, startAmbient, stopAmbient } = useAudio();
 
@@ -50,6 +51,8 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
 
     const currentDialog = scene.dialog[dialogIndex];
     const isLastDialog = dialogIndex === scene.dialog.length - 1;
+    const visibleCharacters = currentDialog?.characters ?? scene.characters;
+    const activeEffect = currentDialog?.effect ?? scene.effect;
 
     // Map current dialog or scene sound
     // Only play scene.sound on the first dialog line (index 0) to prevent looping on every click
@@ -76,6 +79,20 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
             playSound(currentSound);
         }
     }, [currentSceneId, dialogIndex, scene, currentSound]);
+
+    useEffect(() => {
+        if (activeEffect !== 'blackout' && activeEffect !== 'flash') {
+            setOverlayEffect(null);
+            return;
+        }
+
+        setOverlayEffect(activeEffect);
+        const timer = setTimeout(() => {
+            setOverlayEffect(null);
+        }, activeEffect === 'blackout' ? 140 : 120);
+
+        return () => clearTimeout(timer);
+    }, [currentSceneId, dialogIndex, activeEffect]);
 
     const handleNextDialog = () => {
         if (isLastDialog) {
@@ -120,20 +137,20 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
                     />
                 )}
                 {/* Dynamic filters based on effect */}
-                {scene.effect === 'flash' && <div className="absolute inset-0 bg-white z-10 animate-ping opacity-50" />}
-                {scene.effect === 'blackout' && <div className="absolute inset-0 bg-black z-50 animate-pulse" />}
+                {overlayEffect === 'flash' && <div className="absolute inset-0 bg-white z-40 opacity-75" />}
+                {overlayEffect === 'blackout' && <div className="absolute inset-0 bg-black z-50" />}
             </motion.div>
 
             {/* Shake Effect Wrapper */}
             <motion.div
                 className="absolute inset-0 z-10"
-                animate={scene.effect === 'shake' ? { x: [-10, 10, -10, 10, 0] } : {}}
+                animate={activeEffect === 'shake' ? { x: [-10, 10, -10, 10, 0] } : {}}
                 transition={{ duration: 0.4 }}
             >
                 {/* Sprites Layer */}
                 {isBgLoaded && (
                     <AnimatePresence>
-                        {scene.characters.map((char) => (
+                        {visibleCharacters.map((char) => (
                             <SpriteRenderer key={char.name} character={char} />
                         ))}
                     </AnimatePresence>

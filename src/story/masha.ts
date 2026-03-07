@@ -149,9 +149,23 @@ export const mashaStory: Record<string, Scene> = {
         background: 'office',
         characters: [{ name: 'freddy', expression: 'alert', position: 'right' }],
         dialog: [
-            { speaker: null, text: 'Свет моргает.' },
-            { speaker: null, text: 'Раз. Два.' },
-            { speaker: null, text: 'В конце коридора — тёмный силуэт. Быстрый.' },
+            { speaker: null, text: 'Свет моргает.', effect: 'blackout', characters: [] },
+            {
+                speaker: null,
+                text: 'Свет возвращается. В конце коридора уже стоит Фокси.',
+                characters: [
+                    { name: 'freddy', expression: 'alert', position: 'right' },
+                    { name: 'foxy', expression: 'jumpscare', position: 'hallway_far' },
+                ],
+            },
+            {
+                speaker: null,
+                text: 'Он срывается с места. Быстрый.',
+                characters: [
+                    { name: 'freddy', expression: 'alert', position: 'right' },
+                    { name: 'foxy', expression: 'jumpscare', position: 'hallway_far' },
+                ],
+            },
             { speaker: null, text: 'Мысль на одну секунду: «Разъебу ли я это в теннис?»', memeImage: 'photo_2026-02-18_23-27-28.jpg' },
             { speaker: 'Фредди', text: 'Дверь.' },
             { speaker: 'Фредди', text: 'Сейчас.' },

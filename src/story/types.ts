@@ -58,6 +58,8 @@ export interface DialogLine {
     text: string;
     memeImage?: string;     // filename from /public/assets/memes/
     sound?: string;
+    effect?: ScreenEffect;
+    characters?: CharacterOnScreen[];
 }
 
 export interface Choice {

@@ -32,6 +32,11 @@ export const Preloader: React.FC<PreloaderProps> = ({ storyData }) => {
                     if (line.memeImage) {
                         collectedAssets.add(`/assets/memes/${line.memeImage}`);
                     }
+                    if (line.characters) {
+                        line.characters.forEach(char => {
+                            collectedAssets.add(`/assets/sprites/${char.name}.png`);
+                        });
+                    }
                 });
             }
         }
