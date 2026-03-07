@@ -65,7 +65,7 @@ export const polinaStory: Record<string, Scene> = {
             { speaker: null, text: 'Камера 2 — сцена. Пусто. Только три аниматроника стоят в темноте.' },
             { speaker: null, text: 'Камера 3 — комната вечеринок. Там... кто-то есть?' },
             { speaker: null, text: 'Ты щуришься. Нет, показалось.' },
-            { speaker: null, text: 'Вдруг свет на мгновение моргает.' },
+            { speaker: null, text: 'Вдруг свет на мгновение моргает.', effect: 'blackout' },
         ],
         nextId: 'bonnie_arrives',
     },
@@ -148,20 +148,10 @@ export const polinaStory: Record<string, Scene> = {
         background: 'office',
         characters: [{ name: 'bonnie', expression: 'surprised', position: 'right' }],
         dialog: [
-            { speaker: null, text: 'Свет моргает.', effect: 'blackout', characters: [] },
-            {
-                speaker: null,
-                text: 'Свет возвращается. Бонни уже рядом.',
-                characters: [
-                    { name: 'bonnie', expression: 'surprised', position: 'right' },
-                ],
-            },
+            { speaker: null, text: 'Свет моргает.', effect: 'blackout' },
             {
                 speaker: null,
                 text: 'В коридоре слышен топот. Быстрый. Приближающийся.',
-                characters: [
-                    { name: 'bonnie', expression: 'surprised', position: 'right' },
-                ],
             },
             { speaker: null, text: 'Ты смотришь в монитор на тёмный силуэт в конце коридора.' },
             { speaker: null, text: 'Мысль: «Разъебу ли я это в теннис?»', memeImage: 'photo_2026-02-18_23-27-28.jpg' },
