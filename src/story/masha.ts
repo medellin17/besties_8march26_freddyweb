@@ -12,8 +12,8 @@ export const mashaStory: Record<string, Scene> = {
         characters: [],
         dialog: [
             { speaker: null, text: 'Для Маши.' },
+            { speaker: null, text: 'Ты редкий человек: смешная, умная и настоящая. Не меняйся. 🐤' },
             { speaker: null, text: 'С 8 марта!' },
-            { speaker: null, text: 'Ты самая странная и самая лучшая одновременно. Не меняйся. 🐤' },
             { speaker: null, text: '— Тот самый парень с телефона' },
         ],
         nextId: 'intro',

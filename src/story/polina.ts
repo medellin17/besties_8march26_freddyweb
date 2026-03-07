@@ -12,8 +12,8 @@ export const polinaStory: Record<string, Scene> = {
         characters: [],
         dialog: [
             { speaker: null, text: 'Для Полины.' },
+            { speaker: null, text: 'Ты делаешь обычные дни лучше одним появлением. Это талант. 🐤' },
             { speaker: null, text: 'С 8 марта!' },
-            { speaker: null, text: 'Ты умеешь делать любой день веселее просто фактом своего существования. Это важный талант. 🐤' },
             { speaker: null, text: '— Тот самый парень с телефона' },
         ],
         nextId: 'intro',
@@ -82,7 +82,7 @@ export const polinaStory: Record<string, Scene> = {
             { speaker: null, text: 'Из коридора слышен тихий перебор гитарных струн.' },
             { speaker: null, text: 'В дверном проёме появляется Бонни. Он смотрит на тебя. Ты смотришь на него.' },
             { speaker: 'Бонни', text: 'Хэй. Ты новая?' },
-            { speaker: null, text: 'Ты кивком.' },
+            { speaker: null, text: 'Ты киваешь.' },
             { speaker: 'Бонни', text: 'Понял. Первая ночь — всегда стрёмно. Потом привыкаешь.' },
             { speaker: 'Бонни', text: 'Я Бонни. Кролик. С гитарой. Да, я знаю.' },
         ],
@@ -272,7 +272,7 @@ export const polinaStory: Record<string, Scene> = {
         ],
         choices: [
             { text: '🤦 "Ты серьёзно?"', nextId: 'ending_chaos' },
-            { text: '❤️ "Это мило, спасибо"', nextId: 'ending_heartwarming' },
+            { text: '🥰 "Это мило, спасибо"', nextId: 'ending_heartwarming' },
             { text: '🔥 "Хочу в беседу, позви всех"', nextId: 'ending_party' },
         ],
     },
@@ -333,7 +333,7 @@ export const polinaStory: Record<string, Scene> = {
         ],
         dialog: [
             { speaker: 'Чика', text: '...Правда?' },
-            { speaker: null, text: 'Ты кивок.' },
+            { speaker: null, text: 'Ты киваешь.' },
             { speaker: 'Чика', text: 'Ну вот. С 8 марта, papagev.' },
             { speaker: 'Чика', text: 'Ты крутая. Это объективно.' },
             { speaker: 'Бонни', text: 'Подтверждаю.' },
