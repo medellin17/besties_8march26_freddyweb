@@ -77,10 +77,14 @@ export const polinaStory: Record<string, Scene> = {
     bonnie_arrives: {
         id: 'bonnie_arrives',
         background: 'office',
-        characters: [{ name: 'bonnie', expression: 'neutral', position: 'right' }],
+        characters: [],
         dialog: [
             { speaker: null, text: 'Из коридора слышен тихий перебор гитарных струн.' },
-            { speaker: null, text: 'В дверном проёме появляется Бонни. Он смотрит на тебя. Ты смотришь на него.' },
+            {
+                speaker: null,
+                text: 'В дверном проёме появляется Бонни. Он смотрит на тебя. Ты смотришь на него.',
+                characters: [{ name: 'bonnie', expression: 'neutral', position: 'right' }],
+            },
             { speaker: 'Бонни', text: 'Хэй. Ты новая?' },
             { speaker: null, text: 'Ты киваешь.' },
             { speaker: 'Бонни', text: 'Понял. Первая ночь — всегда стрёмно. Потом привыкаешь.' },
@@ -147,10 +151,9 @@ export const polinaStory: Record<string, Scene> = {
             { speaker: null, text: 'Свет моргает.', effect: 'blackout', characters: [] },
             {
                 speaker: null,
-                text: 'Свет возвращается. В конце коридора уже стоит Фокси.',
+                text: 'Свет возвращается. Бонни уже рядом.',
                 characters: [
                     { name: 'bonnie', expression: 'surprised', position: 'right' },
-                    { name: 'foxy', expression: 'jumpscare', position: 'hallway_far' },
                 ],
             },
             {
@@ -158,7 +161,6 @@ export const polinaStory: Record<string, Scene> = {
                 text: 'В коридоре слышен топот. Быстрый. Приближающийся.',
                 characters: [
                     { name: 'bonnie', expression: 'surprised', position: 'right' },
-                    { name: 'foxy', expression: 'jumpscare', position: 'hallway_far' },
                 ],
             },
             { speaker: null, text: 'Ты смотришь в монитор на тёмный силуэт в конце коридора.' },

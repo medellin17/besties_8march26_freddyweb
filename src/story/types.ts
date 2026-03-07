@@ -60,6 +60,7 @@ export interface DialogLine {
     sound?: string;
     effect?: ScreenEffect;
     characters?: CharacterOnScreen[];
+    autoAdvanceMs?: number;
 }
 
 export interface Choice {

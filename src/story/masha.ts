@@ -155,7 +155,7 @@ export const mashaStory: Record<string, Scene> = {
                 text: 'Свет возвращается. В конце коридора уже стоит Фокси.',
                 characters: [
                     { name: 'freddy', expression: 'alert', position: 'right' },
-                    { name: 'foxy', expression: 'jumpscare', position: 'hallway_far' },
+                    { name: 'foxy', expression: 'jumpscare', position: 'left' },
                 ],
             },
             {
@@ -163,7 +163,7 @@ export const mashaStory: Record<string, Scene> = {
                 text: 'Он срывается с места. Быстрый.',
                 characters: [
                     { name: 'freddy', expression: 'alert', position: 'right' },
-                    { name: 'foxy', expression: 'jumpscare', position: 'hallway_far' },
+                    { name: 'foxy', expression: 'jumpscare', position: 'left' },
                 ],
             },
             { speaker: null, text: 'Мысль на одну секунду: «Разъебу ли я это в теннис?»', memeImage: 'photo_2026-02-18_23-27-28.jpg' },

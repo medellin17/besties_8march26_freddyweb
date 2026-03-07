@@ -53,6 +53,8 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
     const isLastDialog = dialogIndex === scene.dialog.length - 1;
     const visibleCharacters = currentDialog?.characters ?? scene.characters;
     const activeEffect = currentDialog?.effect ?? scene.effect;
+    const autoAdvanceDelay =
+        currentDialog?.autoAdvanceMs ?? (currentDialog?.effect === 'blackout' ? 180 : undefined);
 
     // Map current dialog or scene sound
     // Only play scene.sound on the first dialog line (index 0) to prevent looping on every click
@@ -93,6 +95,19 @@ export const VNPlayer: React.FC<VNPlayerProps> = ({ storyData, startSceneId }) =
 
         return () => clearTimeout(timer);
     }, [currentSceneId, dialogIndex, activeEffect]);
+
+    useEffect(() => {
+        if (!autoAdvanceDelay || isLastDialog) {
+            return;
+        }
+
+        const currentIndex = dialogIndex;
+        const timer = setTimeout(() => {
+            setDialogIndex(prev => (prev === currentIndex ? prev + 1 : prev));
+        }, autoAdvanceDelay);
+
+        return () => clearTimeout(timer);
+    }, [currentSceneId, dialogIndex, autoAdvanceDelay, isLastDialog]);
 
     const handleNextDialog = () => {
         if (isLastDialog) {
